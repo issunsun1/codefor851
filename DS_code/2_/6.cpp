@@ -18,25 +18,16 @@ typedef struct list
 
 } list;
 
-void delete_s(list *h, int a, int b)
+list split(list *h)
 {
-    list *p = h;
-    list *r = h->next;
+    list *p = h->next;
+    list *r;
+    if (p->next != NULL && p->next->next != NULL)
+        r = p->next->next;
     while (r != NULL)
     {
-        list *temp = r;
-
-        if (r->data > a && r->data < b)
-        {
-            r = temp->next;
-            p->next = r;
-            free(temp);
-        }
-        else
-        {
-            r = r->next;
-            p = p->next;
-        }
+        p = p->next;
+        r = r->next;
     }
 }
 

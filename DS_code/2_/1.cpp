@@ -25,6 +25,7 @@ void delete_x(linklist *h, datatype index)
         if (rear->data == index)
         {
             linklist *temp = rear;
+            pre->next = rear;
             rear = rear->next;
             free(temp);
         }
