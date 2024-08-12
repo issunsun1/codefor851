@@ -27,6 +27,17 @@ int bs(int a[N], int l, int r, int index)
         return -1;
 }
 
+int binary_s(int a[N], int l, int r, int index)
+{
+    int mid = (l + r) / 2;
+    if (a[mid] == index)
+        return mid;
+    if (a[mid] < index)
+        return binary_s(a, mid + 1, r, index);
+    else
+        return binary_s(a, l, mid - 1, index);
+}
+
 int main()
 {
     int q, k;
