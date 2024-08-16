@@ -19,7 +19,12 @@ typedef struct tnode
 
 void leveltravel(tree root)
 {
+
+    if(root == NULL)
+        return;
+
     queue<tnode *> s;
+
     s.push(root);
 
     while (!s.empty())
