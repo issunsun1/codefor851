@@ -70,5 +70,6 @@
     "print": "cpp",
     "span": "cpp",
     "format": "cpp"
-  }
+  },
+  "C_Cpp.errorSquiggles": "disabled"
 }

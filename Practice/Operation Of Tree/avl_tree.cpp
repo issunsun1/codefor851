@@ -29,14 +29,51 @@ avlnode *init_node(datatype data, avlnode *left, avlnode *right)
     return p;
 }
 
-// LL
-avlnode *ll_rotation(avltree m)
+int hight(avlnode *root)
 {
-    avltree n;
+    if (root == nullptr)
+        return 0;
+    return max(hight(root->left), hight(root->right)) + 1;
+}
 
-    n = m->left;
-    m->left = n->right;
-    n->right = m;
+// LL
+avlnode *ll_rotation(avltree k1)
+{
+    avltree k2;
+
+    k2 = k1->left;
+    k1->left = k2->right;
+    k2->left = k1;
+
+    k2->height = hight(k2);
+    k1->height = hight(k1);
+
+    return k2;
+}
+
+// RR
+avlnode *rr_rotation(avltree k1)
+{
+    avltree k2;
+
+    k2 = k1->right;
+    k1->right = k2->left;
+    k2->left = k1;
+
+    k2->height = hight(k2);
+    k1->height = hight(k1);
+}
+
+avlnode *lr_rotation(avltree k3)
+{
+    k3->left = rr_rotation(k3->left);
+    return ll_rotation(k3);
+}
+
+avlnode *rl_rotation(avltree k3)
+{
+    k3->right = ll_rotation(k3->right);
+    return ll_rotation(k3);
 }
 
 int main()
