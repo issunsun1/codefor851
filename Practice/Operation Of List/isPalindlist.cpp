@@ -15,7 +15,7 @@ typedef struct ListNode{
 
 
 // 找到并返回中间结点
-ListNode* middleNode(Listnode *head)
+ListNode* middleNode(ListNode *head)
 {
     ListNode *p = head;
     ListNode *r = head;
@@ -45,8 +45,8 @@ ListNode* reverseList(ListNode *head)
 
 bool ispalindList(ListNode *head)
 {
-    ListNode *middleNode = middleNode(head);
-    ListNode *head2 = reverseList(middleNode);
+    ListNode *mNode = middleNode(head);
+    ListNode *head2 = reverseList(mNode);
 
     while(head!=nullptr&&head2!=nullptr)
     {
