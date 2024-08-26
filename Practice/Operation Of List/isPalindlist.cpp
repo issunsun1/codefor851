@@ -13,26 +13,12 @@ typedef struct ListNode{
     ListNode *next;
 } ListNode;
 
-
-// 找到并返回中间结点
-ListNode* middleNode(ListNode *head)
-{
-    ListNode *p = head;
-    ListNode *r = head;
-    while(r!=nullptr&&r->next!=nullptr)
-    {
-        p = p->next;
-        r = r->next->next;
-    }
-    return p;
-}
-
-// 反转链表
-ListNode* reverseList(ListNode *head)
+ListNode *reverse(ListNode *head)
 {
     ListNode *p = nullptr;
     ListNode *r = head;
-    while(r!=nullptr)
+
+    while (r != nullptr)
     {
         ListNode *temp = r->next;
         r->next = p;
@@ -43,22 +29,40 @@ ListNode* reverseList(ListNode *head)
     return p;
 }
 
-bool ispalindList(ListNode *head)
+bool isPalindrome(ListNode *head)
 {
-    ListNode *mNode = middleNode(head);
-    ListNode *head2 = reverseList(mNode);
+    if (head == nullptr || head->next == nullptr)
+        return true;
 
-    while(head!=nullptr&&head2!=nullptr)
+    ListNode *middle;
+    ListNode *p = head;
+    ListNode *q = head;
+    ListNode *temp = nullptr;
+
+    // 找到中间结点并截断
+    while (q != nullptr && q->next != nullptr)
     {
-        if(head->val!=head2->val)
-            return false;
-
-        head = head->next;
-        head2 = head2->next;
+        temp = p;
+        p = p->next;
+        q = q->next->next;
     }
+    temp->next = nullptr;
 
+    ListNode *head1 = head;
+    ListNode *head2 = reverse(p);
+
+    while (head1 != nullptr && head2 != nullptr)
+        if (head1->val != head2->val)
+            return false;
+        else
+        {
+            head1 = head1->next;
+            head2 = head2->next;
+        }
     return true;
 }
+
+
 
 int main()
 {
