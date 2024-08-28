@@ -7,8 +7,13 @@
 
 using namespace std;
 
+int legalnum(vector<char> in,vector<char> out)
+{
+    
+}
+
 int main()
 {
-    cout << 'test' << endl;
+    
     return 0;
 }
