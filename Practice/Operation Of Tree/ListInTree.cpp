@@ -31,13 +31,13 @@ bool dfs(ListNode *head, TreeNode *root)
     return dfs(head->next, root->left) || dfs(head->next, root->right);
 }
 
-bool ispath(ListNode *head,TreeNode *root)
+bool ispath(ListNode *head, TreeNode *root)
 {
-    if(head==nullptr)
+    if (head == nullptr)
         return true;
-    if(root==nullptr)
+    if (root == nullptr)
         return false;
-    return dfs(head,root)||dfs(head, root->left) || dfs(head, root->right);
+    return dfs(head, root) || dfs(head, root->left) || dfs(head, root->right);
 }
 
 int main()
