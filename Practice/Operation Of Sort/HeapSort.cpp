@@ -31,7 +31,7 @@ void down(vector<int> &a, int start, int end)
     }
 }
 
-void heap_sort(vector<int> arr, int len)
+void heap_sort(vector<int> arr)
 {
     // 从最后一个节点的父节点开始 sift down 以完成堆化 (heapify)
     for (int i = arr.size() / 2; i >= 0; i--)

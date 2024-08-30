@@ -62,8 +62,9 @@ private:
 
 int main()
 {
-    vector<int> nums = {4, 10, 3, 5, 1};
-
+    // vector<int> nums = {4, 10, 3, 5, 1};
+    vector<int> nums;
+    
     MaxHeap maxHeap(nums);
     cout << "Before Heap Sort: ";
     maxHeap.printHeap();
