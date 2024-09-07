@@ -9,6 +9,13 @@ using namespace std;
 
 const int N = 100000;
 
+// 最优 平均时间复杂度 O(nlogn)
+// 最坏时间复杂度 O(n^2)
+// 空间复杂度 O(logn)
+// 不稳定排序算法
+
+
+
 void quick_sort(int a[N], int l, int r)
 {
     if (l >= r)

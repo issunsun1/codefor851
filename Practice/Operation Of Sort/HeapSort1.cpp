@@ -2,6 +2,11 @@
 #include <vector>
 using namespace std;
 
+// 最优最坏平均时间复杂度 O(nlogn)
+// 空间复杂度 O(1)
+// 不稳定排序算法
+// 选希堆快
+
 class MaxHeap
 {
 public:

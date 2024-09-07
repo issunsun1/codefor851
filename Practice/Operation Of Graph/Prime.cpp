@@ -18,9 +18,11 @@ bool st[N];  // 存储每个点是否已经访问过即是否已经在生成树�
 
 // 如果图不连通,则返回INF,否则返回最小生成树的边权重之和
 
-int prim()
+int prim(vector <vector<int> > &a);
 {
-    memset(dist, 0x3f, sizeof(dist));
+    int n = a.size();
+    vector<int> dist(n, INT_MIN);
+    vector<bool> visit(n, false);
 
     int res = 0;
 
@@ -30,7 +32,7 @@ int prim()
         int t = -1;
 
         // 寻找未被访问过的节点并且路径最短
-        for (int j = 1; j <= v; j++)
+        for (int j = 1; j <= n; j++)
             if (!st[j] && (t == -1 || dist[t] > dist[j]))
                 t = j;
 

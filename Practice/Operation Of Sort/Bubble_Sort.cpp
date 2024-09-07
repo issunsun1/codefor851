@@ -8,6 +8,11 @@
 using namespace std;
 const int N = 1000;
 
+// 最优时间复杂度 O(n)
+// 最坏时间复杂度 O(n^2)
+// 平均时间复杂度 O(n^2)
+// 是一种稳定的排序算法
+
 void bubble_sort(int a[N], int len)
 {
     for (int i = 0; i < len - 1; i++)

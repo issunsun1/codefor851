@@ -6,6 +6,9 @@
 #include <stack>
 
 using namespace std;
+// 最优最坏平均时间复杂度 O(nlogn)
+// 空间复杂度 O(1)
+// 稳定排序算法
 
 const int N = 100000;
 
