@@ -19,6 +19,8 @@ ListNode *mergesort(ListNode *head1, ListNode *head2)
     ListNode *dummy;
     dummy->next = nullptr;
     ListNode *p = dummy;
+    
+    // ListNode *n = (ListNode *)malloc(sizeof(ListNode));
 
     while (head1 != nullptr && head2 != nullptr)
     {
