@@ -1,0 +1,98 @@
+#include <iostream>
+#include <cmath>
+#include <algorithm>
+#include <string>
+#include <vector>
+#include <stack>
+#include <stdexcept>
+
+using namespace std;
+
+bool priority(char a)
+{
+    return (a == '*' || a == '/');
+}
+
+stack<char> calculate(string s)
+{
+    stack<char> ans;
+    stack<char> opera;
+
+    for (int i = 0; i < s.length(); i++)
+    {
+        if (s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/')
+        {
+            while (!opera.empty() && opera.top() != '(' && (priority(opera.top()) || !priority(s[i])))
+            {
+                ans.push(opera.top());
+                opera.pop();
+            }
+            opera.push(s[i]);
+        }
+        else if (s[i] == '(')
+        {
+            opera.push(s[i]);
+        }
+        else if (s[i] == ')')
+        {
+            while (!opera.empty() && opera.top() != '(')
+            {
+                ans.push(opera.top());
+                opera.pop();
+            }
+            if (!opera.empty())
+                opera.pop();
+        }
+        else
+        {
+            ans.push(s[i]);
+        }
+    }
+
+    while (!opera.empty())
+    {
+        ans.push(opera.top());
+        opera.pop();
+    }
+
+    return ans;
+}
+
+int evaluate(stack<char> postfix)
+{
+    stack<int> ans;
+    while (!postfix.empty())
+    {
+        char temp = postfix.top();
+        postfix.pop();
+        if (isdigit(temp))
+        {
+            ans.push(temp - '0');
+        }
+        else
+        {
+            int b = ans.top();
+            ans.pop();
+            int a = ans.top();
+            ans.pop();
+            switch (temp)
+            {
+            case '+':
+                ans.push(a + b);
+                break;
+            case '-':
+                ans.push(a - b);
+                break;
+            case '*':
+                ans.push(a * b);
+                break;
+            case '/':
+                if (b == 0)
+                    throw runtime_error("Division by zero");
+                ans.push(a / b);
+                break;
+            }
+        }
+    }
+    return ans.top();
+}
