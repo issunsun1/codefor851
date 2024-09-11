@@ -8,11 +8,15 @@
 
 using namespace std;
 
-bool priority(char a)
+int priority(char a)
 {
-    return (a == '*' || a == '/');
+    if(a=='*'||a=='/')
+        return 2;
+    else
+        return 1;
 }
 
+//  中缀表达式转后缀表达式
 stack<char> calculate(string s)
 {
     stack<char> ans;
@@ -20,9 +24,11 @@ stack<char> calculate(string s)
 
     for (int i = 0; i < s.length(); i++)
     {
+        // 当输入的运算符优先级小于或等于暂时栈顶运算符，则将栈内运算符输出，
+        // 直到左括号活着栈顶运算符优先级小于等于输入运算符        
         if (s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/')
         {
-            while (!opera.empty() && opera.top() != '(' && (priority(opera.top()) || !priority(s[i])))
+            while (!opera.empty() && opera.top() != '(' && priority(opera.top())>=priority(s[i]))
             {
                 ans.push(opera.top());
                 opera.pop();
@@ -45,7 +51,7 @@ stack<char> calculate(string s)
         }
         else
         {
-            ans.push(s[i]);
+            ans.push(s[i]-'0');
         }
     }
 
