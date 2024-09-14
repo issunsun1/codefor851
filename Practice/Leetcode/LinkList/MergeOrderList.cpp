@@ -8,6 +8,8 @@ typedef struct ListNode
     ListNode *next;
 }ListNode;
 
+// 合并两个有序链表
+
 ListNode *merge(ListNode *l1,ListNode *l2)
 {
     if(!l1)

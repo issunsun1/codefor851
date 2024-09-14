@@ -8,6 +8,9 @@
 using namespace std;
 const int N = 10000;
 
+// 时间复杂度 O(logn)
+
+// 二分查找-非递归
 int bs(int a[N], int l, int r, int index)
 {
     while (l <= r)
@@ -21,12 +24,10 @@ int bs(int a[N], int l, int r, int index)
             r = mid;
     }
 
-    if (a[l] == index)
-        return l;
-    else
-        return -1;
+    return a[l] == index ? l : -1;
 }
 
+// 二分查找-递归
 int binary_s(int a[N], int l, int r, int index)
 {
     int mid = (l + r) / 2;
