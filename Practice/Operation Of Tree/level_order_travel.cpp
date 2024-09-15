@@ -8,35 +8,37 @@
 
 using namespace std;
 
-typedef int datatype;
-
-typedef struct tnode
+typedef struct TreeNode
 {
-    datatype data;
-    tnode *left;
-    tnode *right;
-} tnode, *tree;
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+} TreeNode;
 
-void leveltravel(tree root)
+vector<int> leveltravel(TreeNode *root)
 {
+    vector<int> ans;
+    queue<TreeNode *> q;
 
-    if(root == NULL)
-        return;
+    if(root==nullptr)
+        return ans;
+    
+    q.push(root);
 
-    queue<tnode *> s;
-
-    s.push(root);
-
-    while (!s.empty())
+    while(!q.empty())
     {
-        tnode *p = s.front();
-        cout << p->data;
-        if (p->left != NULL)
-            s.push(p->left);
-        if (p->right != NULL)
-            s.push(p->right);
+        root = q.front();
+        q.pop();
+        ans.push_back(root->val);
+        if(root->left)
+            q.push(root->left);
+        if(root->right)
+            q.push(root->right);
     }
+
+    return ans;
 }
+
 
 int main()
 {

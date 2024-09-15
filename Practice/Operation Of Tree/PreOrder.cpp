@@ -10,6 +10,34 @@ typedef struct TreeNode
     TreeNode *right;
 } TreeNode;
 
+vector<int> preorderTraversal(TreeNode *root)
+{
+    vector<int> ans;
+    stack<TreeNode *> s;
+
+    if (!root)
+        return ans;
+
+    while (!s.empty() || root)
+    {
+        while (root)
+        {
+            ans.push_back(root->val);
+            s.push(root);
+            root = root->left;
+        }
+
+        if (!s.empty())
+        {
+            root = s.top();
+            s.pop();
+            root = root->right;
+        }
+    }
+
+    return ans;
+}
+
 vector<int> preorder_no_recursion(TreeNode *root)
 {
     vector<int> res;
