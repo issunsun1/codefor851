@@ -5,7 +5,7 @@
 #include <vector>
 #include <stack>
 
-// 时间复杂度 O(n^2+m) , n表示点数 m表示边数
+// 时间复杂度 O(V^2) 
 
 using namespace std;
 

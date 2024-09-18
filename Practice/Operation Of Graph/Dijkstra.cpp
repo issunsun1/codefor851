@@ -8,6 +8,8 @@
 using namespace std;
 const int N = 10000;
 
+// 时间复杂度 O(V^2)
+
 int v[N];
 int dis[N];
 int a[N][N];

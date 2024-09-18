@@ -4,6 +4,10 @@
 
 using namespace std;
 
+// 时间复杂度 O(V^3)
+// 各顶点之间最短路径
+// 不允许包含带负权值的边组成的回路
+
 void floydWarshall(vector<vector<int>> &graph)
 {
     int V = graph.size();

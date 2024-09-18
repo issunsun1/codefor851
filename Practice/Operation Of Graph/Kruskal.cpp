@@ -9,6 +9,8 @@ using namespace std;
 
 const int N = 10000;
 
+// 时间复杂度 O(Elog2E)
+
 int v, e;
 int p[N]; // 并查集的父节点数组
 
