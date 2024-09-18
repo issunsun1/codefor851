@@ -25,12 +25,12 @@ vector<int> search_num(vector<int> a)
 
     sort(b.begin(),b.end(), cmp);
 
-    res.push_back(b[0]);
+    res.push_back(b[0].first);
 
     for (int i = 1; i < b.size();i++)
     {
         if(b[i]==b[0])
-            res.push_back(b[i]);
+            res.push_back(b[i].first);
         else
             break;
     }

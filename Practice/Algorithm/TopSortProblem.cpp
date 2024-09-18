@@ -8,7 +8,7 @@ using namespace std;
 
 vector<int> findtopsort(vector< vector<int> > & course,int coursenum)
 {
-    vector< vector<int> > neighbor;
+    vector< vector<int> > neighbor(course.size(),vector<int>(course.size(),0));
     vector<int> ans;
     vector<int> incount(coursenum, 0);
     queue<int> q;
@@ -16,9 +16,12 @@ vector<int> findtopsort(vector< vector<int> > & course,int coursenum)
     int n = course.size();
     int m = course.size();
 
+    
+    // 构建邻接矩阵和入度数组
     for (int i = 0;i < n;i++)
     {
-        neighbor[course[i][1]].push_back(neighbor[course[i][0]]);
+
+        neighbor[course[i][1]].push_back(course[i][0]);
         incount[course[i][0]]++;
     }
 
