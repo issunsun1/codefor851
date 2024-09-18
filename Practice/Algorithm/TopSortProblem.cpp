@@ -17,7 +17,7 @@ vector<int> findtopsort(vector< vector<int> > & course,int coursenum)
     int m = course.size();
 
     
-    // 构建邻接矩阵和入度数组
+    // 构建邻接表和入度数组
     for (int i = 0;i < n;i++)
     {
 
