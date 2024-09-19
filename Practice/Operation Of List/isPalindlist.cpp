@@ -46,6 +46,7 @@ bool isPalindrome(ListNode *head)
         p = p->next;
         q = q->next->next;
     }
+    
     temp->next = nullptr;
 
     ListNode *head1 = head;
