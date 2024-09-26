@@ -29,7 +29,7 @@ vector<int> search_num(vector<int> a)
 
     for (int i = 1; i < b.size();i++)
     {
-        if(b[i]==b[0])
+        if(b[i].second==b[0].second)
             res.push_back(b[i].first);
         else
             break;
