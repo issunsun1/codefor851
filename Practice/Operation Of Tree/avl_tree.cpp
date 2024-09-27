@@ -9,72 +9,65 @@ using namespace std;
 
 typedef int datatype;
 
-typedef struct avlnode
+// 平衡二叉树的调整从最小不平衡子树开始
+
+typedef struct TreeNode
 {
-    datatype data;
+    int val;
     int height;
-    avlnode *left;
-    avlnode *right;
-} avlnode, *avltree;
+    TreeNode *left;
+    TreeNode *right;
 
-avlnode *init_node(datatype data, avlnode *left, avlnode *right)
-{
-    avlnode *p = (avlnode *)malloc(sizeof(avlnode));
+    TreeNode() : val(-1), left(nullptr), right(nullptr) {};
+} TreeNode;
 
-    p->data = data;
-    p->height = 0;
-    p->left = left;
-    p->right = right;
-
-    return p;
-}
-
-int hight(avlnode *root)
+int height(TreeNode *root)
 {
     if (root == nullptr)
         return 0;
-    return max(hight(root->left), hight(root->right)) + 1;
+    return max(height(root->left), height(root->right)) + 1;
 }
 
-// LL
-avlnode *ll_rotation(avltree k1)
+// LL r1为最小不平衡子树的根结点
+TreeNode *ll_rotation(TreeNode *r1)
 {
-    avltree k2;
+    TreeNode *r2 = r1->left;
 
-    k2 = k1->left;
-    k1->left = k2->right;
-    k2->left = k1;
+    r1->left = r2->right;
+    r2->right = r1;
 
-    k2->height = hight(k2);
-    k1->height = hight(k1);
+    r2->height = height(r2);
+    r1->height = height(r1);
 
-    return k2;
+    return r2;
 }
 
-// RR
-avlnode *rr_rotation(avltree k1)
+// RR旋转
+TreeNode *rr_rotation(TreeNode *r1)
 {
-    avltree k2;
+    TreeNode *r2 = r1->right;
+    r1->right = r2->left;
+    r2->left = r1;
 
-    k2 = k1->right;
-    k1->right = k2->left;
-    k2->left = k1;
-
-    k2->height = hight(k2);
-    k1->height = hight(k1);
+    r2->height = height(r2);
+    r1->height = height(r1);
+    return r2;
 }
 
-avlnode *lr_rotation(avltree k3)
+// LR 先左旋再右旋
+TreeNode *lr_rotation(TreeNode *r1)
 {
-    k3->left = rr_rotation(k3->left);
-    return ll_rotation(k3);
+    r1->left = ll_rotation(r1->left);
+    return rr_rotation(r1);
 }
 
-avlnode *rl_rotation(avltree k3)
+// RL 先右旋再左旋
+TreeNode *rl_rotation(TreeNode *r1)
 {
-    k3->right = ll_rotation(k3->right);
-    return ll_rotation(k3);
+    r1->right = rr_rotation(r1->right);
+    return ll_rotation(r1);
 }
+
 
 int main()
 {
