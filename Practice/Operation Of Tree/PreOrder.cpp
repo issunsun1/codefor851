@@ -27,12 +27,9 @@ vector<int> preorderTraversal(TreeNode *root)
             root = root->left;
         }
 
-        if (!s.empty())
-        {
-            root = s.top();
-            s.pop();
-            root = root->right;
-        }
+        root = s.top();
+        s.pop();
+        root = root->right;
     }
 
     return ans;
