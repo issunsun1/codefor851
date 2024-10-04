@@ -22,7 +22,7 @@ struct cmp
     bool operator()(HuffmanNode *left, HuffmanNode *right)
     {
         return left->frequency > right->frequency;
-        }
+    }
 };
 
 
@@ -32,7 +32,7 @@ HuffmanNode *buildHuffmanTree(const unordered_map<char, int> &frequencies)
     priority_queue<HuffmanNode *, vector<HuffmanNode *>, cmp> minHeap;
 
     // 创建一个叶节点并将其插入优先队列
-    for (const auto &pair : frequencies)
+    for (auto &pair : frequencies)
     {
         minHeap.push(new HuffmanNode(pair.first, pair.second));
     }
