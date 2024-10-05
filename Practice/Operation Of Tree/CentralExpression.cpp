@@ -25,7 +25,7 @@ stack<char> calculate(string s)
     for (int i = 0; i < s.length(); i++)
     {
         // 当输入的运算符优先级小于或等于暂时栈顶运算符，则将栈内运算符输出，
-        // 直到左括号活着栈顶运算符优先级小于等于输入运算符        
+        // 直到左括号或者栈顶运算符优先级小于等于输入运算符        
         if (s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/')
         {
             while (!opera.empty() && opera.top() != '(' && priority(opera.top())>=priority(s[i]))
