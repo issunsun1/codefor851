@@ -16,6 +16,7 @@ int prim(vector< vector<int> > &graph)
     int res = 0;
 
     dist[0] = 0; // 从第一个节点开始
+    
     for (int i = 0; i < n; i++)
     {
         int t = -1;
