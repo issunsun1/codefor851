@@ -37,7 +37,7 @@ int prim(vector< vector<int> > &graph)
         // 根据新添加进序列的点对未被访问的点进行距离的计算
         for (int j = 0; j < n; j++)
             if (!visit[j])
-                dist[j] = min(dist[j], graph[t][j]);
+                dist[j] = min(dist[j], dist[t]+graph[t][j]);
     }
 
     return res;
