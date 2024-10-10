@@ -17,7 +17,7 @@ const int N = 1000;
 
 void bubble_sort(int a[N], int len)
 {
-    for (int i = 0; i < len - 1; i++)
+    for (int i = 0; i < len; i++)
         for (int j = 0; j < len - 1 - i; j++)
             if (a[j] > a[j + 1])
                 swap(a[j], a[j + 1]);
@@ -26,7 +26,7 @@ void bubble_sort(int a[N], int len)
 
 void bubble(vector<int> a)
 {
-    for (int i = 0; i < a.size() - 1;i++)
+    for (int i = 0; i < a.size();i++)
         for (int j = 0; j < a.size() - 1 - i;j++)
                 if(a[j]>a[j+1])
                     swap(a[j], a[j + 1]);
