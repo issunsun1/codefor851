@@ -4,33 +4,35 @@
 #include <string>
 #include <vector>
 #include <stack>
-// 生成nums数组的全排列
+
 using namespace std;
 
-vector< vector<int> > ans;
+// 形成长度为k的自然数所有排列可能
 
-void backtrack(vector<int> &nums, int x, vector<int> &path)
+class Solution
 {
-    if (path.size() == nums.size())
+private:
+    vector< vector<int> > result; // 存放符合条件结果的集合
+    vector<int> path;           // 用来存放符合条件结果
+    void backtracking(int n, int k, int startIndex)
     {
-        ans.emplace_back(path);
-        return;
+        if (path.size() == k)
+        {
+            result.push_back(path);
+            return;
+        }
+        for (int i = startIndex; i < n; i++)
+        {
+            path.push_back(i);         // 处理节点
+            backtracking(n, k, i + 1); // 递归
+            path.pop_back();           // 回溯，撤销处理的节点
+        }
     }
 
-    for (int i = x; i < nums.size(); ++i)
+public:
+    vector< vector<int> > combine(int n, int k)
     {
-        swap(nums[x], nums[i]);
-        path.emplace_back(nums[x]);
-        backtrack(nums, x + 1, path);
-        path.pop_back();
-        swap(nums[x], nums[i]);
+        backtracking(n, k, 1);
+        return result;
     }
-}
-
-vector< vector<int> > permute(vector<int> &nums)
-{
-    vector<int> path;
-    backtrack(nums, 0, path);
-    return ans;
-}
-
+};
