@@ -30,3 +30,20 @@ bool resolution(Listnode *root)
 
     return false;
 }
+
+// 使用双指针判断链表中是否存在环
+bool judge(ListNode *head)
+{
+    ListNode *fast = head;
+    ListNode *slow = head;
+
+    while(fast&&fast->next)
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+        if(slow==fast)
+            return true;
+    }
+
+    return false;
+}

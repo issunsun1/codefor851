@@ -7,6 +7,8 @@
 
 using namespace std;
 
+
+// 排列树
 // 形成长度为k的自然数所有排列可能
 
 class Solution
