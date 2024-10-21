@@ -11,7 +11,7 @@ int p[N]; // 并查集的父节点数组
 struct Edge
 {
     int a, b, w;
-    bool operator<(const Edge &W) const
+    const bool operator<(const Edge &W)
     {
         return w < W.w;
     }
