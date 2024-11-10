@@ -7,9 +7,7 @@
 
 using namespace std;
 
-class Solution
-{
-public:
+
     int coinChange(vector<int> &coins, int amount)
     {
         int n = coins.size();
@@ -40,4 +38,4 @@ public:
 
         return dp[n][amount] == INT_MAX ? -1 : dp[n][amount]; // 如果无法构成，则返回 -1
     }
-};
+
