@@ -40,6 +40,54 @@ void merge_sort(int a[N], int l, int r)
         a[i] = temp[j];
 }
 
+void merge_sort2(int a[N], int n)
+{
+    int temp[N];
+
+    // 每次子数组的长度，从1开始倍增
+    for (int size = 1; size < n; size *= 2)
+    {
+        // 从左到右合并子数组
+        for (int left_start = 0; left_start < n; left_start += 2 * size)
+        {
+            int mid = min(left_start + size - 1, n - 1);
+            int right_end = min(left_start + 2 * size - 1, n - 1);
+
+            // 初始化指针
+            int i = left_start, j = mid + 1, k = left_start;
+
+            // 合并两个子数组
+            while (i <= mid && j <= right_end)
+            {
+                if (a[i] <= a[j])
+                {
+                    temp[k++] = a[i++];
+                }
+                else
+                {
+                    temp[k++] = a[j++];
+                }
+            }
+
+            // 拷贝剩余元素
+            while (i <= mid)
+            {
+                temp[k++] = a[i++];
+            }
+            while (j <= right_end)
+            {
+                temp[k++] = a[j++];
+            }
+
+            // 拷贝回原数组
+            for (i = left_start; i <= right_end; i++)
+            {
+                a[i] = temp[i];
+            }
+        }
+    }
+}
+
 int main()
 {
     int n;
