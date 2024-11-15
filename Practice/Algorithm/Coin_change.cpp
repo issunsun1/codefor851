@@ -7,35 +7,23 @@
 
 using namespace std;
 
-
-    int coinChange(vector<int> &coins, int amount)
+int coinChange(vector<int> &coins, int amount)
+{
+    int maxn = 0x3f3f;
+    int n = coins.size();
+    vector< vector<int> > dp(n + 1, vector<int>(amount + 1, maxn));
+    dp[0][0] = 0;
+    for (int i = 1; i < n + 1; i++)
     {
-        int n = coins.size();
-        vector< vector<int> > dp(n + 1, vector<int>(amount + 1, INT_MAX));
-
-        // 初始化：0金额需要0个硬币
-        for (int i = 0; i <= n; i++)
+        dp[i][0] = 0;
+        for (int j = 1; j < amount + 1; j++)
         {
-            dp[i][0] = 0;
+            if (j >= coins[i - 1])
+                dp[i][j] = min(dp[i - 1][j], dp[i][j - coins[i - 1]] + 1);
+            else
+                dp[i][j] = dp[i - 1][j];
         }
-
-        // 状态转移
-        for (int i = 1; i <= n; i++)
-        {
-            for (int j = 1; j <= amount; j++)
-            {
-                dp[i][j] = dp[i - 1][j]; // 不使用当前硬币
-                if (j >= coins[i - 1])
-                {
-                    // 使用当前硬币
-                    if (dp[i][j - coins[i - 1]] != INT_MAX)
-                    {
-                        dp[i][j] = min(dp[i][j], dp[i][j - coins[i - 1]] + 1);
-                    }
-                }
-            }
-        }
-
-        return dp[n][amount] == INT_MAX ? -1 : dp[n][amount]; // 如果无法构成，则返回 -1
     }
 
+    return dp[n][amount] == maxn ? -1 : dp[n][amount];
+}
