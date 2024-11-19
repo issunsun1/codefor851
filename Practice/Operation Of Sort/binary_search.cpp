@@ -30,6 +30,8 @@ int bs(int a[N], int l, int r, int index)
 // 二分查找-递归
 int binary_s(int a[N], int l, int r, int index)
 {
+    if (l > r)
+        return -1; // 表示未找到
     int mid = (l + r) / 2;
     if (a[mid] == index)
         return mid;
