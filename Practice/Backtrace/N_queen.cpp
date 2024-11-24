@@ -9,38 +9,34 @@ using namespace std;
 
 vector< vector<string> > ans;
 
-bool check(vector< vector<string> > &board, int row, int col)
+bool valid(vector<string> &board, int row, int col)
 {
     int n = board.size();
-    // 判断同一列是否冲突
     for (int i = 0; i < n; i++)
-        if (board[i][col] == "Q")
+        if (board[i][col] == 'Q')
             return false;
-
-    // 判断反对角线上是否冲突
     for (int i = row - 1, j = col + 1; i >= 0 && j < n; i--, j++)
-        if (board[i][j] == "Q")
+        if (board[i][j] == 'Q')
             return false;
 
-    // 判断正对角线上是否冲突
     for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--)
-        if (board[i][j] == "Q")
+        if (board[i][j] == 'Q')
             return false;
+
     return true;
 }
 
-void dfs(vector<string> &board,int x)
+void dfs(vector<string> &board, int x)
 {
-    if(x==board.size())
+    if (x == board.size())
     {
         ans.push_back(board);
         return;
     }
-    int n = board.size();
-
-    for (int i = 0; i < n;i++)
+    int n = board[x].size();
+    for (int i = 0; i < n; i++)
     {
-        if(check(board,x,i))
+        if (!valid(board, x, i))
             continue;
         board[x][i] = 'Q';
         dfs(board, x + 1);
@@ -48,11 +44,12 @@ void dfs(vector<string> &board,int x)
     }
 }
 
-
-
-vector< vector<string> > solve(int n)
+vector< vector< string > > solveNQueens(int n)
 {
     vector<string> board(n, string(n, '.'));
     dfs(board, 0);
     return ans;
 }
+
+
+
