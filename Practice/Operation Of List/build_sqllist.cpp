@@ -14,8 +14,18 @@ typedef struct linklist
     linklist *next;
 } linklist;
 
+typedef struct ListNode
+{
+    int x;
+    ListNode *next;
+    ListNode(int val) : x(val) {};
+} ListNode;
+
+ListNode *p = new ListNode(1);
+
 // 头插法建立单链表
-linklist *head_buildlist()
+linklist *
+head_buildlist()
 {
     char input;
     linklist *head = (linklist *)malloc(sizeof(linklist));
