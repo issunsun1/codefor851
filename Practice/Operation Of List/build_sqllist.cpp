@@ -14,14 +14,16 @@ typedef struct linklist
     linklist *next;
 } linklist;
 
-typedef struct ListNode
-{
-    int x;
-    ListNode *next;
-    ListNode(int val) : x(val) {};
-} ListNode;
+// typedef struct ListNode
+// {
+//     int x;
+//     ListNode *next;
+//     ListNode(int val) : x(val) {};
+// } ListNode;
 
-ListNode *p = new ListNode(1);
+// ListNode *p = new ListNode(1);
+
+
 
 // 头插法建立单链表
 linklist *
