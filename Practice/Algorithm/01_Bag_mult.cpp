@@ -29,7 +29,7 @@ int resolution() {
 
             // 尝试选当前物品的不同数量
             for (int k = 1; k <= nums[i - 1] && k * weight[i - 1] <= j; k++) {
-                dp[i][j] = max(dp[i][j], dp[i - 1][j - k * weight[i - 1]] + k * value[i - 1]);
+                dp[i][j] = max(dp[i-1][j], dp[i - 1][j - k * weight[i - 1]] + k * value[i - 1]);
             }
         }
     }
