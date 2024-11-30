@@ -6,84 +6,45 @@ vector<int> weight;
 vector<int> nums;
 vector<int> value;
 
-int resolve(int bagsize)
+typedef struct TNode
 {
-    int n = weight.size();
-    int m = bagsize;
+    int val;
+    TNode *left;
+    TNode *right;
+} TNode;
 
+vector<int> pretravel(TNode *root)
+{
+    stack<TNode *> s;
+    vector<int> ans;
 
-    vector< vector<int> > dp(n + 1, vector<int>(m+1));
+    if(root==nullptr)
+        return ans;
 
-    for (int i = 0; i < m + 1;i++)
-        dp[0][i] = 0;
+    s.push(root);
 
-    for (int i = 1; i <= n; i++)
-        for (int j = 0; j <= m;j++)
+    while(root||!s.empty())
+    {
+        while(root)
         {
-            dp[i][j] = dp[i - 1][j];
-            for (int k = 1; k < nums[i - 1] && k * weight[i - 1] <= j;k++)
-                dp[i][j] = max(dp[i][j], dp[i - 1][j - k * weight[i - 1]]+k*value[i-1]);
-            
+            ans.push_back(root->val);
+            s.push(root);
+            root = root->left;
         }
 
-    return dp[n][m];
+        TNode *temp = s.top();
+        s.pop();
+
+        root = temp->right;
+    }
 }
 
-int solve2(int bagsize)
+vector<int> centraltravel(TNode *root)
 {
-    int n = weight.size();
-    int m = bagsize;
+    stack<TNode *> s;
+    vector<int> ans;
+    if(root==nullptr)
+        return ans;
+    s.push(root);
 
-    vector< vector<int> > dp(n + 1, vector<int>(m + 1));
-
-    dp[0][0] = 0;
-    for (int i = 0; i <= n;i++)
-    {
-        dp[i][0] = 0;
-        for (int j = 0; j <= m; j++)
-        {
-            if(weight[i-1]<=j)
-                dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - weight[i - 1]] + value[i - 1]);
-            else
-                dp[i][j] = dp[i - 1][j];
-        }
-    }
-
-    return dp[n][m];
-}
-
-int calculate(vector<int> a)
-{
-    int sum = 0;
-    int maxn = 0;
-    for (int i = 0; i < a.size(); i++)
-    {
-        sum = max(sum, 0) + nums[i];
-        maxn = max(maxn, sum);
-    }
-
-    return maxn;
-}
-
-int coinchange(vector<int> coins,int amount)
-{
-    int maxn = 0x3f3f3f;
-    int n = coins.size();
-    vector<vector<int>> dp(n + 1, vector<int>(amount + 1, maxn));
-
-    dp[0][0];
-
-    for (int i = 1; i <= n;i++)
-    {
-        dp[i][0] = 0;
-        for (int j = 1; j <= n;j++)
-        {
-            if(j>=coins[i-1])
-                dp[i][j] = min(dp[i - 1][j], dp[i - 1][j - coins[i - 1]] + 1);
-            else
-                dp[i][j] = dp[i - 1][j];
-        }
-    }
-
-    return dp[n][amount] == maxn ? -1 : dp[n][amount];
 }

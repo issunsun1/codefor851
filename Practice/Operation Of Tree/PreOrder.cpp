@@ -17,6 +17,7 @@ vector<int> preorderTraversal(TreeNode *root)
 
     if (!root)
         return ans;
+    
 
     while (!s.empty() || root)
     {
