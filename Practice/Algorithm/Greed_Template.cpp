@@ -7,45 +7,41 @@
 
 using namespace std;
 
-
-// 贪心模版
-struct activity
+// 最优装载
+//      有一批集装箱要装上一艘载重为c的轮船，其中集装箱i的重量为wi。
+//      要求轮船在装载体积不受限制的情况下装尽可能**多**的集装箱。
+typedef struct
 {
-    int id;  // 编号
-    int s;   // 开始时间
-    int f;   // 结束时间
-    int v;   // 价值
-    int w;   // 重量
-    int vis; // 标记是否需要选中
-};
-bool cmp(activity a, activity b)
+    int index;
+    int weight;
+} Cargo;
+bool cmp(Cargo *c1, Cargo *c2)
 {
-    return a.f < b.f;
+    return c1->weight < c2->weight;
 }
-void solve(activity arr[], int n)
+
+/**
+ * @param load 表示是否装入集装箱，1装0不装
+ * @param x 记录装载的货物，0未装载，1装载
+ * @param c 轮船载重
+ * */
+// 贪心 —— 最轻者先装
+// O(nlogn)
+void Loading(int weight[], int *x, int c, int len)
 {
-    int endtime = 0;
-    int c, valRes;
-    sort(arr + 1, arr + n, cmp); // 表示排序下标从arr[1]-arr[n-1]的元素排序
-    for (int i = 1; i <= n; i++)
+    Cargo **cargo = (Cargo **)malloc(sizeof(Cargo *) * len);
+    for (int i = 0; i < len; ++i)
     {
-        // 1、装载
-        if (false)
-        { // 容量已超，已装满
-            // 或者装部分
-            break;
-        }
-        else
-        {
-            valRes += arr[i].v;
-            c -= arr[i].w;
-            arr[i].vis = 1;
-        }
-        // 2、活动安排
-        if (arr[i].s >= endtime)
-        {
-            arr[i].vis = 1;
-            endtime = arr[i].f;
-        }
+        cargo[i] = (Cargo *)malloc(sizeof(Cargo));
+        cargo[i]->weight = weight[i];
+        cargo[i]->index = i;
+    }
+    // 排序，谁轻装谁
+    sort(cargo, cargo + len, cmp);
+
+    for (int i = 0; i < len && cargo[i]->weight <= c; ++i)
+    {
+        c -= cargo[i]->weight;
+        x[cargo[i]->index] = 1;
     }
 }
