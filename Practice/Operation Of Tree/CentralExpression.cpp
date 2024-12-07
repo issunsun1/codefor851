@@ -104,3 +104,38 @@ int evaluate(stack<char> postfix)
     }
     return ans.top();
 }
+
+int calculate2(string s)
+{
+    stack<int> ans;
+    for (int i = 0; i < s.size();i++)
+    {
+        char temp = s[i];
+        if(isdigit(temp))
+            ans.push(temp - '0');
+        else
+        {
+            int b = ans.top();
+            ans.pop();
+            int a = ans.top();
+            ans.pop();
+            switch(temp)
+            {
+                case '+':
+                    ans.push(a + b);
+                    break;
+                case '-':
+                    ans.push(a - b);
+                    break;
+                case '*':
+                    ans.push(a * b);
+                    break;
+                case '/':
+                    ans.push(a / b);
+                    break;
+            }
+        }
+    }
+
+    return ans.top();
+}
