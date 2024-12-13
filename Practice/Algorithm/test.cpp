@@ -1,50 +1,54 @@
 #include <iostream>
+#include <cmath>
+#include <algorithm>
+#include <string>
 #include <vector>
+#include <stack>
+
 using namespace std;
 
-vector<int> weight;
-vector<int> nums;
-vector<int> value;
-
-typedef struct TNode
+int sortt(int num)
 {
-    int val;
-    TNode *left;
-    TNode *right;
-} TNode;
+    vector<int> nums;
 
-vector<int> pretravel(TNode *root)
-{
-    stack<TNode *> s;
-    vector<int> ans;
-
-    if(root==nullptr)
-        return ans;
-
-    s.push(root);
-
-    while(root||!s.empty())
+    while (num > 0)
     {
-        while(root)
-        {
-            ans.push_back(root->val);
-            s.push(root);
-            root = root->left;
-        }
-
-        TNode *temp = s.top();
-        s.pop();
-
-        root = temp->right;
+        nums.push_back(num % 10);
+        num /= 10;
     }
+
+    sort(nums.begin(), nums.end());
+
+    int res = 0;
+    for (auto n : nums)
+        res = res * 10 + n;
+
+    return res;
 }
 
-vector<int> centraltravel(TNode *root)
+int main()
 {
-    stack<TNode *> s;
-    vector<int> ans;
-    if(root==nullptr)
-        return ans;
-    s.push(root);
+    int n;
 
+    while (true)
+    {
+        cin >> n;
+        if (n == 0)
+            break;
+
+        int maxn = 0;
+        int temp;
+
+        for (int i = 0; i < n; ++i)
+        {
+            cin >> temp;
+            int sort_temp = sortt(temp);
+
+            maxn = (maxn > sort_temp) ? maxn : sort_temp;
+        }
+
+        cout << maxn << endl;
+    }
+
+    return 0;
 }
