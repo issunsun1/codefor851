@@ -18,7 +18,6 @@ vector<int> corder(TreeNode *root)
 {
     vector<int> a;
     stack<TreeNode *> s;
-    s.push(root);
 
     if(!root)
         return a;
