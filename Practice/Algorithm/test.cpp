@@ -113,3 +113,23 @@ void down(vector<int> a,int start,int end)
     }
 }
 
+void quick_sort(vector<int> &a,int i,int j)
+{
+    if(i>=j)
+        return;
+    int l = i, r = j;
+    int mid = (l + r) / 2;
+    int index = a[mid];
+
+    while(l<r)
+    {
+        if(a[l]<index)
+            l++;
+        if(a[r]>index)
+            r--;
+        if(l<r)
+            swap(a[l], a[r]);
+    }
+    quick_sort(a, l, j);
+    quick_sort(a, j + 1, r);
+}
