@@ -14,7 +14,7 @@ void PreOrderTravel(TreeNode *root)
         return;
 
     stack<TreeNode *> s;
-    s.push(root);
+
     while(!s.empty()||root)
     {
         while(root)
